@@ -1,6 +1,11 @@
 # The Simulator class will produce random characters, check them against a trie, and present information on the current status of the challenge
 
+# TODO:
+# 1. add datetime to next() (once schema is known)
 import random
+import trie
+from __future__ import annotations
+
 class Simulator:
     def __init__(self, trie: dict[str, dict|float|bool], valid_elements: str|list[str]):
         self.trie = trie
@@ -38,3 +43,6 @@ class Simulator:
 
     def get_current_string(self) -> str:
         return self.curr_string
+    
+    def get_matched_works(self) -> List[str]:
+        return self.curr_node['work_ids']
