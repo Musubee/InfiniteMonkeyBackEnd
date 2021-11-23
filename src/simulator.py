@@ -1,4 +1,5 @@
-# The Simulator class will produce random characters, check them against a trie, and present information on the current status of the challenge
+# The Simulator class will produce random charamaintain the current state of the simulation, and post to the database when a mistake is made (run completed)
+
 
 # TODO:
 # 1. add datetime to next() (once schema is known)
@@ -31,6 +32,7 @@ class Simulator:
                 self.curr_string += next_element + ' '
         else:
             self.curr_node = self.trie
+
             self.curr_string = ''
 
         if self.curr_node['is_done']:
