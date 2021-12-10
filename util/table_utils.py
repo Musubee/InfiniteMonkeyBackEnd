@@ -2,9 +2,12 @@ from __future__ import annotations
 import boto3
 from decimal import Decimal
 
-def create_table(dynamodb=None) -> None:
+def create_table(dynamodb=None, local=False) -> None:
     if not dynamodb:
-        dynamodb = boto3.resource('dynamodb', endpoint_url='http://localhost:8000')
+        if local:
+            dynamodb = boto3.resource('dynamodb')
+        else:
+            dynamodb = boto3.resource('dynamodb')
     
     table = dynamodb.create_table(
             TableName='SimulationRuns',
@@ -42,10 +45,14 @@ def put_simulation_run(
         percentage: float, 
         generated_string: str, 
         work_title: str,
-        dynamodb=None
+        dynamodb=None,
+        local=False
     ) -> None:
     if not dynamodb:
-        dynamodb = boto3.resource('dynamodb', endpoint_url='http://localhost:8000')
+        if local:
+            dynamodb = boto3.resource('dynamodb', endpoint_url='http://localhost:8000')
+        else:
+            dynamodb = boto3.resource('dynamodb')
     
     percentage = Decimal(str(percentage))
     table = dynamodb.Table('SimulationRuns')

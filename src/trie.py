@@ -3,9 +3,6 @@
 # Although a recursive implementation is cleaner in my opinion, it runs into issues of maximum recursion depth limit when saving the trie to file
 # Still have to be careful though, as trying to print the full trie will result in a recursion error
 
-# TODO:
-# 1. Alter insert and create_trie to handle new work file names (underscore-separated titles)
-#   a) add second level of sorting by character count
 
 # annotations allows for easy type hinting (dict, list)
 from __future__ import annotations
